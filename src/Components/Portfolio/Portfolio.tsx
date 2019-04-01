@@ -83,7 +83,6 @@ class Portfolio extends React.Component<PortfolioProps, PortfolioState> {
       return <LoadingIcon size={80} />;
     }
 
-    console.log(this.props.repos);
     const git_repos = this.props.repos.map(repo => (
       <PortfolioCollapseList
         git_repo={repo}
@@ -91,8 +90,6 @@ class Portfolio extends React.Component<PortfolioProps, PortfolioState> {
         key={repo.title}
       />
     ));
-
-    console.log(git_repos);
 
     return (
       <React.Fragment>
