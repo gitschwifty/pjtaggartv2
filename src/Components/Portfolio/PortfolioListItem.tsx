@@ -1,8 +1,8 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
 import { GitFileInterface } from './Portfolio';
+import './Portfolio.css';
 
 interface PortfolioListItemProps {
   file: GitFileInterface;
@@ -13,6 +13,7 @@ interface PortfolioListItemProps {
 class PortfolioListItem extends React.Component<PortfolioListItemProps> {
   constructor(props: PortfolioListItemProps) {
     super(props);
+
     this.onClick = this.onClick.bind(this);
   }
 
@@ -29,6 +30,23 @@ class PortfolioListItem extends React.Component<PortfolioListItemProps> {
   };
 
   render() {
+    if (
+      new RegExp(/^\.\w*|.*\.(gif|jpg|jpeg|png|pdf|ico)/, 'i').test(
+        this.props.file.path
+      )
+    ) {
+      return (
+        <ListItem className='noClickItem'>
+          <ListItemText
+            style={{
+              marginLeft: 25 * this.props.depth + 'px'
+            }}
+            primary={this.props.file.path}
+          />
+        </ListItem>
+      );
+    }
+
     return (
       <ListItem button onClick={this.onClick}>
         <ListItemText

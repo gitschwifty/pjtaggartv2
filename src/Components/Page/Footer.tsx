@@ -25,8 +25,8 @@ class Footer extends React.Component {
             >
               <defs>
                 <linearGradient id='c' x1='50%' x2='50%' y1='0%' y2='100%'>
-                  <stop offset='0%' stop-color='#FFF' stop-opacity='.5' />
-                  <stop offset='100%' stop-opacity='.5' />
+                  <stop offset='0%' stopColor='#FFF' stopOpacity='.5' />
+                  <stop offset='100%' stopOpacity='.5' />
                 </linearGradient>
                 <circle id='b' cx='16' cy='15' r='15' />
                 <filter
@@ -86,7 +86,7 @@ class Footer extends React.Component {
                   />
                 </filter>
               </defs>
-              <g fill='none' fill-rule='evenodd'>
+              <g fill='none' fillRule='evenodd'>
                 <use fill='#000' filter='url(#a)' xlinkHref='#b' />
                 <use fill='#4BA2F2' xlinkHref='#b' />
                 <use
@@ -99,11 +99,11 @@ class Footer extends React.Component {
                   cy='15'
                   r='14.5'
                   stroke='#000'
-                  stroke-opacity='.097'
+                  strokeOpacity='.097'
                 />
-                <g fill-rule='nonzero'>
+                <g fillRule='nonzero'>
                   <use fill='#000' filter='url(#d)' xlinkHref='#e' />
-                  <use fill='#FFF' fill-rule='evenodd' xlinkHref='#e' />
+                  <use fill='#FFF' fillRule='evenodd' xlinkHref='#e' />
                 </g>
               </g>
             </svg>

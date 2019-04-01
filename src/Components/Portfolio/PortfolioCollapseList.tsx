@@ -61,7 +61,7 @@ class PortfolioCollapseList extends React.Component<
 
     return (
       <React.Fragment>
-        <ListItem button onClick={this.handleClick}>
+        <ListItem divider button onClick={this.handleClick}>
           <ListItemText primary={git_repo.title} />
         </ListItem>
         <Collapse in={this.state.open} timeout={500} unmountOnExit>

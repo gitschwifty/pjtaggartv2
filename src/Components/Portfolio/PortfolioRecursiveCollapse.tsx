@@ -63,7 +63,7 @@ class PortfolioRecursiveCollapse extends React.Component<
 
     return (
       <React.Fragment>
-        <ListItem button onClick={this.handleClick}>
+        <ListItem divider button onClick={this.handleClick}>
           <ListItemText
             style={{ marginLeft: 25 * this.props.depth + 'px' }}
             primary={dir.path}
