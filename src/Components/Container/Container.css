@@ -5,6 +5,16 @@
   background-color: #f4f4f4;
 }
 
+a {
+  color: #373737;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #373737;
+  text-decoration: underline;
+}
+
 .header {
   text-align: center;
   color: #373737;

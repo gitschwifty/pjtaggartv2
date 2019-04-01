@@ -15,10 +15,7 @@ class PostPreview extends React.Component<PostPreviewProps> {
     return (
       <React.Fragment>
         <div className='preview_div'>
-          <Link
-            style={{ textDecoration: 'none' }}
-            to={'/post/' + this.props.post.permlink}
-          >
+          <Link to={'/post/' + this.props.post.permlink}>
             <h2 className='preview_title'>{this.props.post.title}</h2>
           </Link>
           <h4 className='preview_date'>

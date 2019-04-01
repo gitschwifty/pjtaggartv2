@@ -6,7 +6,7 @@ class About extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <HeaderContainer title='About Me' />
+        <HeaderContainer title='Peter J Taggart' />
         <BodyContainer>
           <p className='about_para'>
             I'm a 23 year old software engineer living in Denver. I've worked in
