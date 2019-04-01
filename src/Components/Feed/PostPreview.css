@@ -1,0 +1,28 @@
+.preview_div {
+  text-align: left;
+  margin-top: 0.9em;
+  margin-bottom: 1em;
+}
+
+.preview_div p {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.preview_title {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+.preview_tag {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+.preview_date {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}

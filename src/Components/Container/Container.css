@@ -1,0 +1,32 @@
+#body_container {
+  width: 80%;
+  margin: auto;
+  color: #373737;
+  background-color: #f4f4f4;
+}
+
+.header {
+  text-align: center;
+  color: #373737;
+}
+
+.title {
+  margin: 1em auto 0.05em;
+}
+
+.subtitle {
+  margin: 0 auto 0.15em;
+}
+
+.date_header {
+  margin: 0 auto 0.1em;
+}
+
+.category_header {
+  margin: 0 auto 0.15em;
+}
+
+.tags_header {
+  margin: 0;
+  font-weight: normal;
+}
