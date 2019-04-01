@@ -1,0 +1,19 @@
+.home_link {
+  color: #373737;
+}
+
+.home_link:visited {
+  color: #373737;
+}
+
+.home_link_description {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+}
+
+.home_header {
+  text-align: center;
+  margin-top: 40px;
+}
