@@ -18,9 +18,8 @@ export interface GitDirInterface {
   sha: string;
   path: string;
   git_url: string;
-  has_dir: boolean;
-  tree: GitTreeInterface;
-  dir: GitDirInterface[];
+  files: GitFileInterface[];
+  dirs: GitDirInterface[];
 }
 
 export interface GitTreeFileInterface {

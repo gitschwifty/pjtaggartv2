@@ -17,7 +17,6 @@ import {
   GitTreeInterface
 } from '../Portfolio/Portfolio';
 import { updateRepo } from '../../Redux/Actions/portfolioActions';
-import { Dirent } from 'fs';
 
 interface AppProps {
   posts: Discussion[];
@@ -72,8 +71,6 @@ class App extends React.Component<AppProps> {
         if (response.status !== 403) {
           response.json().then(data => {
             for (const file of data) {
-              console.log(file);
-
               if (file.type === 'dir' || file.type === 'tree') {
                 if (file.path !== 'public' || repo.url !== 'pjtaggart') {
                   repo.topDirs.push(this.getTreeRecursive(file));
@@ -102,24 +99,41 @@ class App extends React.Component<AppProps> {
       sha: file.sha,
       path: file.path,
       git_url: file.git_url,
-      has_dir: false,
-      dir: [],
-      tree: {
-        sha: '',
-        tree: []
-      }
+      dirs: [],
+      files: []
     };
 
     fetch(file.git_url + '?recursive=1').then(response => {
       if (response.status !== 403) {
         response.json().then(data => {
-          dir.sha = data.sha;
-
           for (const treeFile of data.tree) {
-            dir = this.getPath(treeFile.path.split('/'), treeFile, dir);
+            if (treeFile.path.includes('/')) {
+              const path = treeFile.path.split('/');
+              dir.dirs = dir.dirs.map(folder =>
+                folder.path === path[0]
+                  ? this.updateDir(path.slice(1), treeFile, folder)
+                  : folder
+              );
+            } else {
+              if (treeFile.type === 'tree') {
+                dir.dirs.push({
+                  sha: treeFile.sha,
+                  path: treeFile.path,
+                  git_url: treeFile.url,
+                  dirs: [],
+                  files: []
+                });
+              } else {
+                dir.files.push({
+                  sha: treeFile.sha,
+                  path: treeFile.path,
+                  type: treeFile.type,
+                  git_url: treeFile.url
+                });
+              }
+            }
           }
 
-          console.log(data);
           return dir;
         });
       } else {
@@ -130,58 +144,82 @@ class App extends React.Component<AppProps> {
     return dir;
   }
 
-  getPath(path: string[], file: any, dir: GitDirInterface): GitDirInterface {
-    if (path[0] === 'ckeditor' || path[0] === '') return dir;
-
+  updateDir(path: string[], file: any, dir: GitDirInterface) {
     if (path.length === 1) {
       if (file.type === 'tree') {
-        dir.dir.push({
+        dir.dirs.push({
           sha: file.sha,
           path: path[0],
           git_url: file.url,
-          has_dir: false,
-          dir: [],
-          tree: {
-            sha: file.sha,
-            tree: []
-          }
+          dirs: [],
+          files: []
         });
       } else {
-        dir.tree.tree.push({
+        dir.files.push({
           sha: file.sha,
           path: path[0],
           type: file.type,
-          url: file.url
+          git_url: file.url
+        });
+      }
+    } else {
+      dir.dirs = dir.dirs.map(folder =>
+        folder.path === path[0]
+          ? this.updateDir(path.slice(1), file, folder)
+          : folder
+      );
+    }
+
+    return dir;
+  }
+
+  getPath(path: string[], file: any, dir: GitDirInterface): GitDirInterface {
+    if (path[0] === 'ckeditor' || path[0] === '') return dir;
+    console.log(path);
+    console.log(file);
+    console.log(dir);
+
+    if (path.length === 1) {
+      if (file.type === 'tree') {
+        dir.dirs.push({
+          sha: file.sha,
+          path: path[0],
+          git_url: file.url,
+          dirs: [],
+          files: []
+        });
+      } else {
+        dir.files.push({
+          sha: file.sha,
+          path: path[0],
+          type: file.type,
+          git_url: file.url
         });
       }
 
       return dir;
     } else {
-      const nextDir = dir.dir.find(val => val.path === path[0]);
+      const nextDir = dir.dirs.find(val => val.path === path[0]);
 
       if (nextDir) {
         return {
           ...dir,
-          dir: [
-            ...dir.dir.filter(value => value.path !== path[0]),
+          dirs: [
+            ...dir.dirs.filter(value => value.path !== path[0]),
             this.getPath(path.slice(1), file, nextDir)
           ]
         };
       } else {
         return {
           ...dir,
-          dir: [
-            ...dir.dir.filter(value => value.path !== path[0]),
+          dirs: [
+            ...dir.dirs.filter(value => value.path !== path[0]),
             this.getPath(path.slice(1), file, {
               sha: file.sha,
               path: path[0],
               git_url: file.url,
-              has_dir: false,
-              dir: [],
-              tree: {
-                sha: file.sha,
-                tree: []
-              }
+              dirs: [],
+              files: []
             })
           ]
         };

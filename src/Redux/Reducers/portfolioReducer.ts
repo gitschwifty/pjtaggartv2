@@ -3,18 +3,16 @@ import {
   PortfolioActionType,
   UPDATE_REPO
 } from '../Types/portfolioTypes';
-/**
- * {
+
+const initialState: PortfolioState = {
+  repos: [
+    {
       name: 'pjtaggartv2',
       title: 'This Website: pjtaggartv2',
       url: 'pjtaggartv2',
       topDirs: [],
       topFiles: []
     },
- */
-
-const initialState: PortfolioState = {
-  repos: [
     {
       name: 'pjtaggartv1',
       title: 'The old version of this site: pjtaggartv1',

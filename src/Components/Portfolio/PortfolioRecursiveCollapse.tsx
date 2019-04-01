@@ -34,25 +34,23 @@ class PortfolioRecursiveCollapse extends React.Component<
   render() {
     const { dir } = this.props;
 
-    const listFiles = dir.tree
-      ? dir.tree.tree.map(file => {
-          return (
-            <PortfolioListItem
-              file={{
-                sha: file.sha,
-                path: file.path,
-                git_url: file.url,
-                type: file.type
-              }}
-              depth={this.props.depth + 1}
-              key={file.path}
-              openModal={this.props.openModal}
-            />
-          );
-        })
-      : null;
+    const listFiles = dir.files.map(file => {
+      return (
+        <PortfolioListItem
+          file={{
+            sha: file.sha,
+            path: file.path,
+            git_url: file.git_url,
+            type: file.type
+          }}
+          depth={this.props.depth + 1}
+          key={file.path}
+          openModal={this.props.openModal}
+        />
+      );
+    });
 
-    const listDirs = dir.dir.map(subDir => {
+    const listDirs = dir.dirs.map(subDir => {
       return (
         <PortfolioRecursiveCollapse
           dir={subDir}
