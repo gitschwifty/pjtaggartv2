@@ -18,6 +18,7 @@ a:visited {
 .header {
   text-align: center;
   color: #373737;
+  font-family: 'Zilla Slab', serif;
 }
 
 .title {
@@ -39,4 +40,5 @@ a:visited {
 .tags_header {
   margin: 0;
   font-weight: normal;
+  font-family: 'Lato', sans-serif;
 }

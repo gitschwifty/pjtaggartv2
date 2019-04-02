@@ -2,11 +2,13 @@
   text-align: left;
   margin-top: 0.9em;
   margin-bottom: 1em;
+  font-family: 'Zilla Slab', serif;
 }
 
 .preview_div p {
   margin-top: 0.25em;
   margin-bottom: 0.25em;
+  font-family: 'Lato', sans-serif;
 }
 
 .preview_title {
