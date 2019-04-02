@@ -94,7 +94,7 @@ class Post extends React.Component<PostProps, PostState> {
           title={title}
           date={created}
           category={category}
-          tags={this.state.tags}
+          tags={this.state.tags.slice(1)}
         />
         <BodyContainer>
           <ReactMarkdown source={body} className='markdown_container' />

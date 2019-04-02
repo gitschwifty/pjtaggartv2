@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
@@ -17,10 +13,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "outDir": "./Server",
+    "noEmit": false
   },
-  "include": [
-    "src"
-  ]
+  "include": ["./src/Server"]
 }
