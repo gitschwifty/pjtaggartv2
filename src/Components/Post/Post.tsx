@@ -61,16 +61,12 @@ class Post extends React.Component<PostProps, PostState> {
         post => post.permlink === this.props.match.params.permlink
       );
 
-      this.setState({ post, tags: [] });
-
       if (post) {
         const json_metadata = JSON.parse(post.json_metadata);
         this.setState({
           post,
           tags: json_metadata.tags
         });
-        console.log(this.state.tags);
-        console.log(json_metadata);
       }
     }
   }

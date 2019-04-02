@@ -1,5 +1,5 @@
-import * as ignoreStyles from 'ignore-styles';
-
+import register from 'ignore-styles';
+register(['.css']);
 require('@babel/register')({
   ignore: [/(node_modules)/],
   presets: ['@babel/preset-env', '@babel/preset-react']
