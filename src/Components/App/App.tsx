@@ -1,19 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { Client, DatabaseAPI, Discussion } from 'dsteem';
 import { updatePosts, clearPost } from '../../Redux/Actions/postActions';
 import { AppState } from '../../Redux/Reducers';
+
 import Home from '../Home';
 import Portfolio from '../Portfolio';
 import Feed from '../Feed';
 import About from '../About';
-
-import './App.css';
 import Post from '../Post';
+import ScrollToTop from './ScrollToTop';
 import { GitRepoInterface, GitDirInterface } from '../Portfolio/Portfolio';
 import { updateRepo } from '../../Redux/Actions/portfolioActions';
-import { Dispatch } from 'redux';
+
+import './App.css';
 
 interface AppProps {
   posts: Discussion[];
@@ -178,11 +180,13 @@ class App extends React.Component<AppProps> {
     return (
       <div id='app_container'>
         <BrowserRouter>
-          <Route exact path='/' component={Home} />
-          <Route path='/portfolio' component={Portfolio} />
-          <Route path='/feed' component={Feed} />
-          <Route path='/about' component={About} />
-          <Route path='/post/:permlink' component={Post} />
+          <ScrollToTop>
+            <Route exact path='/' component={Home} />
+            <Route path='/portfolio' component={Portfolio} />
+            <Route path='/feed' component={Feed} />
+            <Route path='/about' component={About} />
+            <Route path='/post/:permlink' component={Post} />
+          </ScrollToTop>
         </BrowserRouter>
       </div>
     );
