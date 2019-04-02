@@ -68,22 +68,20 @@ class Portfolio extends React.Component<PortfolioProps, PortfolioState> {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  componentDidMount() {}
-
-  closeModal = () => {
+  private closeModal = () => {
     this.setState({ modalOpen: false });
   };
 
-  openModal = (code: JSX.Element) => {
+  private openModal = (code: JSX.Element) => {
     this.setState({ modalOpen: true, displayCode: code });
   };
 
-  render() {
+  public render() {
     if (this.props.repos.length < 1) {
       return <LoadingIcon size={80} />;
     }
 
-    const git_repos = this.props.repos.map(repo => (
+    const gitRepos = this.props.repos.map(repo => (
       <PortfolioCollapseList
         git_repo={repo}
         openModal={this.openModal}
@@ -109,7 +107,7 @@ class Portfolio extends React.Component<PortfolioProps, PortfolioState> {
               </ListSubheader>
             }
           >
-            {git_repos}
+            {gitRepos}
           </List>
         </BodyContainer>
       </React.Fragment>

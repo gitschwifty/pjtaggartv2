@@ -4,7 +4,7 @@ import { BodyContainer, HeaderContainer } from '../Container';
 import './Home.css';
 
 class Home extends React.Component {
-  render() {
+  public render() {
     return (
       <React.Fragment>
         <BodyContainer>

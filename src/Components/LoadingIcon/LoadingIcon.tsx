@@ -7,7 +7,7 @@ interface LoadingIconProps {
 }
 
 class LoadingIcon extends React.Component<LoadingIconProps> {
-  render() {
+  public render() {
     return (
       <div style={{ width: this.props.size + 'px' }} className='progress_div'>
         <CircularProgress size={this.props.size} />

@@ -3,7 +3,7 @@ import About from './About';
 import Page from '../Page';
 
 export default class extends React.Component {
-  render() {
+  public render() {
     return (
       <Page>
         <About />

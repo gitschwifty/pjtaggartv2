@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 class HeaderContainer extends React.Component<HeaderProps> {
-  render() {
+  public render() {
     const { title, subtitle, date, category, tags } = this.props;
 
     const subtitleHeader = subtitle ? (

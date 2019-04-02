@@ -32,13 +32,13 @@ class PortfolioCollapseList extends React.Component<
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = () => {
+  private handleClick = () => {
     this.setState(state => ({
       open: !state.open
     }));
   };
 
-  render() {
+  public render() {
     const { git_repo } = this.props;
 
     const topDirs = git_repo.topDirs.map(dir => (

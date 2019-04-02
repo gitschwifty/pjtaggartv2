@@ -17,19 +17,19 @@ class PortfolioListItem extends React.Component<PortfolioListItemProps> {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick = () => {
-    fetch(this.props.file.git_url).then(response =>
-      response.json().then(code => {
-        console.log(code);
-        console.log(atob(code.content));
-        this.props.openModal(
-          <pre style={{ fontSize: '16px' }}>{atob(code.content)}</pre>
-        );
-      })
-    );
+  private onClick = () => {
+    fetch(this.props.file.git_url)
+      .then(response =>
+        response.json().then(code => {
+          this.props.openModal(
+            <pre style={{ fontSize: '16px' }}>{atob(code.content)}</pre>
+          );
+        })
+      )
+      .catch(error => alert(error));
   };
 
-  render() {
+  public render() {
     if (
       new RegExp(/^\.\w*|.*\.(gif|jpg|jpeg|png|pdf|ico)/, 'i').test(
         this.props.file.path

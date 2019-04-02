@@ -1,7 +1,7 @@
 import React from 'react';
 
 class BodyContainer extends React.Component {
-  render() {
+  public render() {
     return <div id='body_container'>{this.props.children}</div>;
   }
 }

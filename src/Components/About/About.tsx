@@ -3,7 +3,7 @@ import { BodyContainer, HeaderContainer } from '../Container';
 import './About.css';
 
 class About extends React.Component {
-  render() {
+  public render() {
     return (
       <React.Fragment>
         <HeaderContainer title='Peter J Taggart' />

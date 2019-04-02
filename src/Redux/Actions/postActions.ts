@@ -11,6 +11,6 @@ export function updatePosts(newPosts: Discussion[]) {
 export function clearPost(key: string) {
   return {
     type: CLEAR_POST,
-    key: key
+    key
   };
 }

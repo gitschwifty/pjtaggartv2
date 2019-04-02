@@ -27,11 +27,11 @@ class PortfolioRecursiveCollapse extends React.Component<
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = () => {
+  private handleClick = () => {
     this.setState({ open: !this.state.open });
   };
 
-  render() {
+  public render() {
     const { dir } = this.props;
 
     const listFiles = dir.files.map(file => {

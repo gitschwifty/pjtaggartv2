@@ -11,7 +11,7 @@ interface PostPreviewProps {
 }
 
 class PostPreview extends React.Component<PostPreviewProps> {
-  render() {
+  public render() {
     return (
       <React.Fragment>
         <div className='preview_div'>
@@ -34,8 +34,9 @@ class PostPreview extends React.Component<PostPreviewProps> {
                 node.type === 'paragraph' &&
                 node.children &&
                 node.children.length > 0
-              )
+              ) {
                 return true;
+              }
               if (node.type === 'text' && node.value && node.value.length > 5) {
                 return true;
               }

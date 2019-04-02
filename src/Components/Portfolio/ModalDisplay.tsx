@@ -11,7 +11,7 @@ class ModalCodeDisplay extends React.Component<ModalCodeDisplayProps> {
     super(props);
   }
 
-  render() {
+  public render() {
     return (
       <Modal
         aria-labelledby='Code Display'

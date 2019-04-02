@@ -20,7 +20,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 class Feed extends React.Component<FeedProps> {
-  render() {
+  public render() {
     if (this.props.posts.length === 0) {
       return <LoadingIcon size={80} />;
     }

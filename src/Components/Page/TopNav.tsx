@@ -4,7 +4,7 @@ import { ButtonLink } from '../Button';
 import { Link } from 'react-router-dom';
 
 class TopNav extends React.Component {
-  render() {
+  public render() {
     return (
       <div id='top_nav_container'>
         <Toolbar>

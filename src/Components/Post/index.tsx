@@ -6,7 +6,7 @@ import { RouteComponentProps } from 'react-router';
 export default class extends React.Component<
   RouteComponentProps<PostRouteParams>
 > {
-  render() {
+  public render() {
     return (
       <Page>
         <Post {...this.props} />

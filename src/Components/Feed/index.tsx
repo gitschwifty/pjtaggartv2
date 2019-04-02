@@ -4,7 +4,7 @@ import Page from '../Page';
 import { HeaderContainer, BodyContainer } from '../Container';
 
 export default class extends React.Component {
-  render() {
+  public render() {
     return (
       <Page>
         <HeaderContainer title='Posts' />

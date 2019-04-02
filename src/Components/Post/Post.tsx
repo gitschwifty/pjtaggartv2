@@ -8,13 +8,11 @@ import { HeaderContainer, BodyContainer } from '../Container';
 import './Post.css';
 import LoadingIcon from '../LoadingIcon';
 
-export type PostRouteParams = {
+export interface PostRouteParams {
   permlink: string;
-};
+}
 
-interface PostProps
-  extends RouteComponentProps<PostRouteParams>,
-    React.Props<PostRouteParams> {
+interface PostProps extends RouteComponentProps<PostRouteParams> {
   posts: Discussion[];
 }
 
@@ -32,46 +30,43 @@ class Post extends React.Component<PostProps, PostState> {
     super(props);
 
     if (props.match && props.match.params.permlink) {
-      console.log(props.match.params.permlink);
-      const post = props.posts.find(
+      const currentPost = props.posts.find(
         post => post.permlink === props.match.params.permlink
       );
 
       this.state = {
-        post,
+        post: currentPost,
         tags: []
       };
 
-      if (post) {
-        const json_metadata = JSON.parse(post.json_metadata);
+      if (currentPost) {
+        const jsonMetadata = JSON.parse(currentPost.json_metadata);
         this.state = {
-          post,
-          tags: json_metadata.tags
+          post: currentPost,
+          tags: jsonMetadata.tags
         };
-        console.log(this.state.tags);
-        console.log(json_metadata);
       }
     }
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     if (this.state.post) return;
     if (this.props.match && this.props.match.params.permlink) {
-      const post = this.props.posts.find(
+      const currentPost = this.props.posts.find(
         post => post.permlink === this.props.match.params.permlink
       );
 
-      if (post) {
-        const json_metadata = JSON.parse(post.json_metadata);
+      if (currentPost) {
+        const jsonMetadata = JSON.parse(currentPost.json_metadata);
         this.setState({
-          post,
-          tags: json_metadata.tags
+          post: currentPost,
+          tags: jsonMetadata.tags
         });
       }
     }
   }
 
-  render() {
+  public render() {
     if (!this.state.post) {
       if (this.props.posts.length === 0) {
         return <LoadingIcon size={80} />;

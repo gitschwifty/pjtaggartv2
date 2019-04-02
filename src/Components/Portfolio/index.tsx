@@ -3,7 +3,7 @@ import Portfolio from './Portfolio';
 import Page from '../Page';
 
 export default class extends React.Component {
-  render() {
+  public render() {
     return (
       <Page>
         <Portfolio />

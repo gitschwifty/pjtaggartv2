@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "$(npm bin)/tslint 'src/**/*.{tx,tsx}'",
+    "lint": "$(npm bin)/tslint 'src/Components/**/*.{ts,tsx}' 'src/Redux/**/*.{ts,tsx}' 'src/index.tsx'",
     "dev": "NODE_ENV=development node build/Server/bootstrap.js"
   },
   "eslintConfig": {
@@ -57,6 +57,8 @@
     "babel-core": "^7.0.0-bridge.0",
     "redux-devtools-extension": "^2.13.8",
     "tslint": "^5.14.0",
-    "tslint-react": "^3.6.0"
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-react": "^4.0.0"
   }
 }

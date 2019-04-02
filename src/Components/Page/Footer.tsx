@@ -3,7 +3,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { IconLink } from '../Button';
 
 class Footer extends React.Component {
-  render() {
+  public render() {
     return (
       <footer id='footer'>
         <IconLink

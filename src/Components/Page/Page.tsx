@@ -4,7 +4,7 @@ import Footer from './Footer';
 import './Page.css';
 
 class Page extends React.Component {
-  render() {
+  public render() {
     return (
       <React.Fragment>
         <TopNav />
