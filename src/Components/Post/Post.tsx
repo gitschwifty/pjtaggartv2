@@ -7,6 +7,7 @@ import { AppState } from '../../Redux/Reducers';
 import { HeaderContainer, BodyContainer } from '../Container';
 import './Post.css';
 import LoadingIcon from '../LoadingIcon';
+import Helmet from 'react-helmet';
 
 export interface PostRouteParams {
   permlink: string;
@@ -81,6 +82,9 @@ class Post extends React.Component<PostProps, PostState> {
     const { title, created, category, body } = this.state.post;
     return (
       <React.Fragment>
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
         <HeaderContainer
           title={title}
           date={created}
