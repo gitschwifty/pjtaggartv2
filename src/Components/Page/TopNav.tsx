@@ -1,14 +1,13 @@
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import { ButtonLink } from '../Button';
-import { Link } from 'react-router-dom';
 
 class TopNav extends React.Component {
   public render() {
     return (
       <div id='top_nav_container'>
-        <Toolbar>
-          <ButtonLink to='/' style={{ fontSize: '24px', fontWeight: 'bold' }}>
+        <Toolbar style={{ maxHeight: '48px', minHeight: '48px' }}>
+          <ButtonLink to='/' style={{ fontSize: '20px', fontWeight: 'bold' }}>
             PJT
           </ButtonLink>
           <div id='topnav_right'>

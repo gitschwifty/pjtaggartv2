@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyContainer, HeaderContainer } from '../Container';
-import { List, ListSubheader, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListSubheader } from '@material-ui/core';
 import PortfolioCollapseList from './PortfolioCollapseList';
 import { AppState } from '../../Redux/Reducers';
 import LoadingIcon from '../LoadingIcon';
@@ -40,6 +40,7 @@ export interface GitRepoInterface {
   url: string;
   topFiles: GitFileInterface[];
   topDirs: GitDirInterface[];
+  loaded: boolean;
 }
 
 export interface PortfolioState {

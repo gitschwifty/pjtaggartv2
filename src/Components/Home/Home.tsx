@@ -7,6 +7,7 @@ class Home extends React.Component {
   public render() {
     return (
       <React.Fragment>
+        <HeaderContainer title='Peter Taggart' />
         <BodyContainer>
           <h3 className='home_header'>
             <Link to='/portfolio' className='home_link'>

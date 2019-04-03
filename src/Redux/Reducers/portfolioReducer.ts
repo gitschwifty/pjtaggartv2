@@ -11,28 +11,32 @@ const initialState: PortfolioState = {
       title: 'This Website: pjtaggartv2',
       url: 'pjtaggartv2',
       topDirs: [],
-      topFiles: []
+      topFiles: [],
+      loaded: false
     },
     {
       name: 'pjtaggartv1',
       title: 'The old version of this site: pjtaggartv1',
       url: 'pjtaggart',
       topDirs: [],
-      topFiles: []
+      topFiles: [],
+      loaded: false
     },
     {
       name: 'pywit',
       title: 'Pywit: A Steem Witness Toolkit built in Python.',
       url: 'pywit',
       topDirs: [],
-      topFiles: []
+      topFiles: [],
+      loaded: false
     },
     {
       name: 'tcc',
       title: 'Tiny C Compiler: unfinished',
       url: 'TCCompiler',
       topDirs: [],
-      topFiles: []
+      topFiles: [],
+      loaded: false
     }
   ]
 };
@@ -44,10 +48,9 @@ export default function portfolioReducer(
   switch (action.type) {
     case UPDATE_REPO:
       return {
-        repos: [
-          ...state.repos.filter(repo => repo.name !== action.repo.name),
-          action.repo
-        ]
+        repos: state.repos.map(repo =>
+          repo.name === action.repo.name ? action.repo : repo
+        )
       };
     default:
       return state;

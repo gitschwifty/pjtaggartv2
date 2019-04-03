@@ -1,5 +1,5 @@
 #top_nav_container {
-  line-height: 40px;
+  line-height: 32px;
   color: #f4f4f4;
   background-color: #373737;
   flex: 0 1 auto;
@@ -15,7 +15,7 @@
 }
 
 #topnav_right a span {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #top_nav_container a {
@@ -39,7 +39,7 @@
 }
 
 #footer {
-  line-height: 25px;
+  line-height: 20px;
   background-color: #373737;
   color: #f4f4f4;
   flex: 0 1 auto;

@@ -6,6 +6,9 @@
     "tslint-react",
     "tslint-config-prettier"
   ],
+  "linterOptions": {
+    "exclude": ["/node_modules/**", "/build/**", "/src/Server/**"]
+  },
   "jsRules": {},
   "rules": {
     "ordered-imports": false,

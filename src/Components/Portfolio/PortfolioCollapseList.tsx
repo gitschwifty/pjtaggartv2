@@ -4,13 +4,17 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import { GitRepoInterface } from './Portfolio';
+import { GitRepoInterface, GitDirInterface } from './Portfolio';
 import PortfolioRecursiveCollapse from './PortfolioRecursiveCollapse';
 import PortfolioListItem from './PortfolioListItem';
+import { updateRepo } from '../../Redux/Actions/portfolioActions';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 interface CollapseListProps {
   git_repo: GitRepoInterface;
   openModal: (code: JSX.Element) => void;
+  updateRepo: typeof updateRepo;
 }
 
 export interface CollapseListState {
@@ -20,6 +24,10 @@ export interface CollapseListState {
 export const InitialState: CollapseListState = {
   open: false
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  updateRepo: (repo: GitRepoInterface) => dispatch(updateRepo(repo))
+});
 
 class PortfolioCollapseList extends React.Component<
   CollapseListProps,
@@ -33,10 +41,93 @@ class PortfolioCollapseList extends React.Component<
   }
 
   private handleClick = () => {
+    const { git_repo } = this.props;
+    if (!git_repo.loaded) {
+      git_repo.topDirs = git_repo.topDirs.map(dir =>
+        this.getTreeRecursive(dir)
+      );
+
+      this.props.updateRepo(git_repo);
+    }
+
     this.setState(state => ({
       open: !state.open
     }));
   };
+
+  private getTreeRecursive(dir: GitDirInterface) {
+    fetch(dir.git_url + '?recursive=1')
+      .then(response => {
+        if (response.status !== 403) {
+          response
+            .json()
+            .then(data => {
+              for (const treeFile of data.tree) {
+                if (treeFile.path.includes('/')) {
+                  const path = treeFile.path.split('/');
+                  dir.dirs = dir.dirs.map(folder =>
+                    folder.path === path[0]
+                      ? this.updateDir(path.slice(1), treeFile, folder)
+                      : folder
+                  );
+                } else {
+                  if (treeFile.type === 'tree') {
+                    dir.dirs.push({
+                      sha: treeFile.sha,
+                      path: treeFile.path,
+                      git_url: treeFile.url,
+                      dirs: [],
+                      files: []
+                    });
+                  } else {
+                    dir.files.push({
+                      sha: treeFile.sha,
+                      path: treeFile.path,
+                      type: treeFile.type,
+                      git_url: treeFile.url
+                    });
+                  }
+                }
+              }
+
+              return dir;
+            })
+            .catch(error => alert(error));
+        }
+      })
+      .catch(error => alert(error));
+
+    return dir;
+  }
+
+  private updateDir(path: string[], file: any, dir: GitDirInterface) {
+    if (path.length === 1) {
+      if (file.type === 'tree') {
+        dir.dirs.push({
+          sha: file.sha,
+          path: path[0],
+          git_url: file.url,
+          dirs: [],
+          files: []
+        });
+      } else {
+        dir.files.push({
+          sha: file.sha,
+          path: path[0],
+          type: file.type,
+          git_url: file.url
+        });
+      }
+    } else {
+      dir.dirs = dir.dirs.map(folder =>
+        folder.path === path[0]
+          ? this.updateDir(path.slice(1), file, folder)
+          : folder
+      );
+    }
+
+    return dir;
+  }
 
   public render() {
     const { git_repo } = this.props;
@@ -75,4 +166,7 @@ class PortfolioCollapseList extends React.Component<
   }
 }
 
-export default PortfolioCollapseList;
+export default connect(
+  null,
+  mapDispatchToProps
+)(PortfolioCollapseList);

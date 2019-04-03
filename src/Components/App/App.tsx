@@ -47,6 +47,10 @@ class App extends React.Component<AppProps> {
     this.dbAPI = new DatabaseAPI(this.steemClient);
   }
 
+  public shouldComponentUpdate() {
+    return false;
+  }
+
   public componentDidMount() {
     this.dbAPI
       .getDiscussions('blog', {
@@ -73,7 +77,13 @@ class App extends React.Component<AppProps> {
                 for (const file of data) {
                   if (file.type === 'dir' || file.type === 'tree') {
                     if (file.path !== 'public' || repo.url !== 'pjtaggart') {
-                      repo.topDirs.push(this.getTreeRecursive(file));
+                      repo.topDirs.push({
+                        sha: file.sha,
+                        path: file.path,
+                        git_url: file.git_url,
+                        dirs: [],
+                        files: []
+                      });
                     }
                   } else {
                     repo.topFiles.push({
@@ -92,88 +102,6 @@ class App extends React.Component<AppProps> {
         })
         .catch(error => alert(error));
     }
-  }
-
-  private getTreeRecursive(file: any) {
-    const dir: GitDirInterface = {
-      sha: file.sha,
-      path: file.path,
-      git_url: file.git_url,
-      dirs: [],
-      files: []
-    };
-
-    fetch(file.git_url + '?recursive=1')
-      .then(response => {
-        if (response.status !== 403) {
-          response
-            .json()
-            .then(data => {
-              for (const treeFile of data.tree) {
-                if (treeFile.path.includes('/')) {
-                  const path = treeFile.path.split('/');
-                  dir.dirs = dir.dirs.map(folder =>
-                    folder.path === path[0]
-                      ? this.updateDir(path.slice(1), treeFile, folder)
-                      : folder
-                  );
-                } else {
-                  if (treeFile.type === 'tree') {
-                    dir.dirs.push({
-                      sha: treeFile.sha,
-                      path: treeFile.path,
-                      git_url: treeFile.url,
-                      dirs: [],
-                      files: []
-                    });
-                  } else {
-                    dir.files.push({
-                      sha: treeFile.sha,
-                      path: treeFile.path,
-                      type: treeFile.type,
-                      git_url: treeFile.url
-                    });
-                  }
-                }
-              }
-
-              return dir;
-            })
-            .catch(error => alert(error));
-        }
-      })
-      .catch(error => alert(error));
-
-    return dir;
-  }
-
-  private updateDir(path: string[], file: any, dir: GitDirInterface) {
-    if (path.length === 1) {
-      if (file.type === 'tree') {
-        dir.dirs.push({
-          sha: file.sha,
-          path: path[0],
-          git_url: file.url,
-          dirs: [],
-          files: []
-        });
-      } else {
-        dir.files.push({
-          sha: file.sha,
-          path: path[0],
-          type: file.type,
-          git_url: file.url
-        });
-      }
-    } else {
-      dir.dirs = dir.dirs.map(folder =>
-        folder.path === path[0]
-          ? this.updateDir(path.slice(1), file, folder)
-          : folder
-      );
-    }
-
-    return dir;
   }
 
   public render() {
