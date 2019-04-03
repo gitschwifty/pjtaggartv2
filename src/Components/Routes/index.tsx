@@ -5,6 +5,7 @@ import Portfolio from '../Portfolio';
 import Feed from '../Feed';
 import About from '../About';
 import Post from '../Post';
+import FourOhFour from './404';
 
 export default () => (
   <Switch>
@@ -13,5 +14,6 @@ export default () => (
     <Route path='/feed' component={Feed} />
     <Route path='/about' component={About} />
     <Route path='/post/:permlink' component={Post} />
+    <Route component={FourOhFour} />
   </Switch>
 );
