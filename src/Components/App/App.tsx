@@ -5,17 +5,12 @@ import { Dispatch } from 'redux';
 import { Client, DatabaseAPI, Discussion } from 'dsteem';
 import { updatePosts, clearPost } from '../../Redux/Actions/postActions';
 import { AppState } from '../../Redux/Reducers';
-
-import Home from '../Home';
-import Portfolio from '../Portfolio';
-import Feed from '../Feed';
-import About from '../About';
-import Post from '../Post';
-import ScrollToTop from './ScrollToTop';
 import { GitRepoInterface, GitDirInterface } from '../Portfolio/Portfolio';
 import { updateRepo } from '../../Redux/Actions/portfolioActions';
+import Routes from '../Routes';
 
 import './App.css';
+import ScrollToTop from './ScrollToTop';
 
 interface AppProps {
   posts: Discussion[];
@@ -109,11 +104,7 @@ class App extends React.Component<AppProps> {
       <div id='app_container'>
         <BrowserRouter>
           <ScrollToTop>
-            <Route exact path='/' component={Home} />
-            <Route path='/portfolio' component={Portfolio} />
-            <Route path='/feed' component={Feed} />
-            <Route path='/about' component={About} />
-            <Route path='/post/:permlink' component={Post} />
+            <Routes />
           </ScrollToTop>
         </BrowserRouter>
       </div>
