@@ -34,6 +34,24 @@ class Home extends React.Component {
           </h3>
 
           <p className='home_link_description'>Some information about me.</p>
+
+          <h3 className='home_header'>
+            <Link to='/about' className='home_link'>
+              My Steem Profile
+            </Link>
+          </h3>
+
+          <h3 className='home_header'>
+            <Link to='/about' className='home_link'>
+              Steem Witness Rankings
+            </Link>
+          </h3>
+
+          <h3 className='home_header'>
+            <Link to='/about' className='home_link'>
+              Steem Witness Schedule
+            </Link>
+          </h3>
         </BodyContainer>
       </React.Fragment>
     );

@@ -1,7 +1,7 @@
 import express from 'express';
 
 const PORT = 3000;
-const path = require('path');
+import path = require('path');
 
 // initialize the application and create the routes
 const app = express();
@@ -20,8 +20,8 @@ app.get('*', (req, res) => {
 // start the app
 app.listen(PORT, (error: any) => {
   if (error) {
-    return console.log('something bad happened', error);
+    return error; // console.log('something bad happened', error);
   }
 
-  console.log('listening on ' + PORT + '...');
+  // console.log('listening on ' + PORT + '...');
 });

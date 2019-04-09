@@ -1,17 +1,17 @@
 import React from 'react';
-import { isNull } from 'util';
 
 interface HeaderProps {
   title: string;
   date?: string;
   category?: string;
   subtitle?: string;
+  minititle?: string;
   tags?: string[];
 }
 
 class HeaderContainer extends React.Component<HeaderProps> {
   public render() {
-    const { title, subtitle, date, category, tags } = this.props;
+    const { title, subtitle, date, category, tags, minititle } = this.props;
 
     const subtitleHeader = subtitle ? (
       <h2 className='header subtitle'>{subtitle}</h2>
@@ -31,11 +31,16 @@ class HeaderContainer extends React.Component<HeaderProps> {
       <h4 className='header tags_header'>Tags: {tags.join(', ')}</h4>
     ) : null;
 
+    const miniTitleHeader = minititle ? (
+      <h3 className='header category_header'>{minititle}</h3>
+    ) : null;
+
     return (
       <React.Fragment>
         <h1 className='header title'>{title}</h1>
         {subtitleHeader}
         {dateHeader}
+        {miniTitleHeader}
         {categoryHeader}
         {tagsHeader}
       </React.Fragment>
