@@ -124,9 +124,10 @@ export default class WitnessSchedule extends React.Component<
                     (witness: any) =>
                       witness.signing_key !==
                         'STM1111111111111111111111111111111114T1Anm' &&
-                      globalProps.head_block_number -
+                      (globalProps.head_block_number -
                         witness.last_confirmed_block_num <
-                        150000
+                        500000 ||
+                        witness.last_confirmed_block_num === 0)
                   )
                   .map((value: any, index: number) => ({
                     ...value,
