@@ -8,16 +8,17 @@ export default class OrderedScheduleDisplay extends React.PureComponent<{
   public render() {
     const listItems = this.props.ordered_list.map((value, index) => (
       <ListItem key={index} style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <p
+        <span
           style={{
             fontSize: '12px',
             lineHeight: '1.25em',
             display: 'block',
-            margin: '0'
+            margin: '0',
+            whiteSpace: 'pre'
           }}
         >
           {index + 1 + '. ' + value.owner + ' (' + value.rank + ' )'}
-        </p>
+        </span>
       </ListItem>
     ));
     return (
