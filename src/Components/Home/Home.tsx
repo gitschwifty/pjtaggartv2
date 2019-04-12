@@ -36,19 +36,19 @@ class Home extends React.Component {
           <p className='home_link_description'>Some information about me.</p>
 
           <h3 className='home_header'>
-            <Link to='/about' className='home_link'>
+            <Link to='/profile' className='home_link'>
               My Steem Profile
             </Link>
           </h3>
 
           <h3 className='home_header'>
-            <Link to='/about' className='home_link'>
+            <Link to='/witnesses' className='home_link'>
               Steem Witness Rankings
             </Link>
           </h3>
 
           <h3 className='home_header'>
-            <Link to='/about' className='home_link'>
+            <Link to='/witness-schedule' className='home_link'>
               Steem Witness Schedule
             </Link>
           </h3>
