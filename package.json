@@ -19,7 +19,8 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-sticky": "^6.0.3",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "type-steem": "file:../type-steem"
   },
   "scripts": {
     "tsc": "tsc",

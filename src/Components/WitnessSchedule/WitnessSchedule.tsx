@@ -126,7 +126,7 @@ export default class WitnessSchedule extends React.Component<
                         'STM1111111111111111111111111111111114T1Anm' &&
                       (globalProps.head_block_number -
                         witness.last_confirmed_block_num <
-                        500000 ||
+                        300000 ||
                         witness.last_confirmed_block_num === 0)
                   )
                   .map((value: any, index: number) => ({

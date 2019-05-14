@@ -15,14 +15,6 @@ const initialState: PortfolioState = {
       loaded: false
     },
     {
-      name: 'pjtaggartv1',
-      title: 'The old version of this site: pjtaggartv1',
-      url: 'pjtaggart',
-      topDirs: [],
-      topFiles: [],
-      loaded: false
-    },
-    {
       name: 'pywit',
       title: 'Pywit: A Steem Witness Toolkit built in Python.',
       url: 'pywit',
