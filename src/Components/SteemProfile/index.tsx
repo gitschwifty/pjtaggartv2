@@ -3,7 +3,7 @@ import Profile from './Profile';
 import Page from '../Page';
 import { HeaderContainer, BodyContainer } from '../Container';
 import Helmet from 'react-helmet';
-import { RouteComponentProps, Route } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import UserSearchBar from './UserSearchBar';
 
 export interface ProfileProps {

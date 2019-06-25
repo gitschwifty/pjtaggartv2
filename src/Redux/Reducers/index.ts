@@ -1,5 +1,5 @@
-import postReducer from './postReducer';
 import { combineReducers } from 'redux';
+import postReducer from './postReducer';
 import portfolioReducer from './portfolioReducer';
 
 const rootReducer = combineReducers({

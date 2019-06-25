@@ -63,7 +63,6 @@ export default class Profile extends React.Component<
     prevProps: { user: string },
     prevState: ProfileState
   ) {
-    console.log('Should update', this.state.witness);
     if (
       prevProps.user !== this.props.user ||
       prevState.loading !== this.state.loading ||
@@ -77,13 +76,15 @@ export default class Profile extends React.Component<
 
   public componentDidUpdate() {
     if (this.state.loaded !== this.props.user) {
-      this.setState({ loading: true });
+      this.setState({
+        loading: true,
+        witnessLoaded: false
+      });
       this.loadAccount();
     }
   }
 
   private loadAccount() {
-    this.setState({ witnessLoaded: false });
     this.dbAPI
       .getDynamicGlobalProperties()
       .then(properties => {
@@ -98,29 +99,30 @@ export default class Profile extends React.Component<
           .getAccounts([this.props.user])
           .then(accs => {
             if (accs.length === 1) {
-              this.setState({
-                acc: accs[0],
-                loading: false,
-                loaded: this.props.user
-              });
-
-              this.steemClient
-                .call('condenser_api', 'get_witness_by_account', [
-                  this.props.user
-                ])
-                .then(witness => {
-                  if (witness) {
-                    this.setState({
-                      witness,
-                      witnessLoaded: true
-                    });
-                  } else {
-                    this.setState({
-                      witness: {}
-                    });
-                  }
-                })
-                .catch(err => alert(err));
+              if (accs[0].witness_votes.includes(this.props.user)) {
+                this.steemClient
+                  .call('condenser_api', 'get_witness_by_account', [
+                    this.props.user
+                  ])
+                  .then(witness => {
+                    if (witness) {
+                      this.setState({
+                        witness,
+                        witnessLoaded: true,
+                        acc: accs[0],
+                        loading: false,
+                        loaded: this.props.user
+                      });
+                    }
+                  })
+                  .catch(err => alert(err));
+              } else {
+                this.setState({
+                  acc: accs[0],
+                  loading: false,
+                  loaded: this.props.user
+                });
+              }
             }
           })
           .catch(err => alert(err));
@@ -132,8 +134,6 @@ export default class Profile extends React.Component<
     if (this.state.loading || !this.state.acc || !this.state.properties) {
       return <LoadingIcon size={80} />;
     }
-
-    console.log('Render', this.state.witness);
 
     return (
       <React.Fragment>

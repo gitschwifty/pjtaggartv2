@@ -28,6 +28,9 @@ export default class UserSearchBar extends React.Component<
   public handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       this.props.handleEnter(this.state.searchText);
+      this.setState({
+        searchText: ''
+      });
     }
   };
 
