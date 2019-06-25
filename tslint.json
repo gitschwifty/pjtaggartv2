@@ -7,7 +7,7 @@
     "tslint-config-prettier"
   ],
   "linterOptions": {
-    "exclude": ["/node_modules/**", "/build/**", "/src/Server/**"]
+    "exclude": ["/node_modules/**", "/build/**", "/unusedAssets/**"]
   },
   "jsRules": {},
   "rules": {

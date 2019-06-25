@@ -31,7 +31,7 @@ dbAPI
 
     const sitemap = sm.createSitemap({
       hostname,
-      cacheTime: 600000, //600 sec (10 min) cache purge period
+      cacheTime: 600000, 
       urls: [
         { url: '/', changefreq: 'weekly', priority: 1 },
         { url: '/feed', changefreq: 'weekly', priority: 0.5 },
@@ -42,7 +42,9 @@ dbAPI
           changefreq: 'monthly',
           priority: 0.3
         }))
-      ]
+      ],
+      xmlNs: "http://www.sitemaps.org/schemas/sitemap/0.9",
+      xslUrl: ""
     });
 
     fs.writeFileSync(OUTPUT_FILE, sitemap.toString());
