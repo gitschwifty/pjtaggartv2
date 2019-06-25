@@ -29,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "$(npm bin)/tslint 'src/Components/**/*.{ts,tsx}' 'src/Redux/**/*.{ts,tsx}' 'src/index.tsx'",
-    "publish": "cd build && aws s3 sync . s3://pjtaggart.com --profile personal && cd .."
+    "predeploy": "npm run build && node src/Server/sitemap.js",
+    "deploy": "cd build && aws s3 sync . s3://pjtaggart.com && cd .. && npm version patch"
   },
   "eslintConfig": {
     "extends": "react-app"
