@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, CardContent } from '@material-ui/core';
-import { Sticky, StickyContainer } from 'react-sticky';
+import React from "react";
+import { Card, CardContent } from "@material-ui/core";
+import { Sticky, StickyContainer } from "react-sticky";
 
 interface CurrentRoundScheduleState {
   current_block_increment: number;
@@ -23,18 +23,18 @@ const CurrentRoundCards = (
     <Card
       key={index}
       style={{
-        minWidth: '80px',
-        maxHeight: '7.5%',
-        width: distanceFromTop ? (distanceFromTop > 0 ? '19%' : '19%') : '19%',
-        display: 'inline-block',
-        fontSize: '10px',
-        textAlign: 'center',
-        float: 'left',
-        marginRight: '1%',
-        marginBottom: '1%',
-        overflowX: 'clip',
-        backgroundColor: currentIncrement >= index + 1 ? '#373737' : 'inherit',
-        color: currentIncrement >= index + 1 ? '#c4c4c4' : 'inherit'
+        minWidth: "80px",
+        maxHeight: "7.5%",
+        width: distanceFromTop ? (distanceFromTop > 0 ? "19%" : "19%") : "19%",
+        display: "inline-block",
+        fontSize: "10px",
+        textAlign: "center",
+        float: "left",
+        marginRight: "1%",
+        marginBottom: "1%",
+        overflowX: "clip",
+        backgroundColor: currentIncrement >= index + 1 ? "#373737" : "inherit",
+        color: currentIncrement >= index + 1 ? "#c4c4c4" : "inherit"
       }}
     >
       <CardContent>
@@ -90,24 +90,24 @@ export default class CurrentRoundSchedule extends React.PureComponent<
 
   public render() {
     return (
-      <StickyContainer style={{ width: '77.5%', display: 'inline-block' }}>
+      <StickyContainer style={{ width: "77.5%", display: "inline-block" }}>
         <Sticky>
-          {props => {
+          {(props: { distanceFromTop: number }) => {
             if (!props.distanceFromTop || props.distanceFromTop > 0) {
               return (
                 <div
                   style={{
-                    marginTop: '3.5%',
-                    position: 'relative',
-                    textAlign: 'center'
+                    marginTop: "3.5%",
+                    position: "relative",
+                    textAlign: "center"
                   }}
                 >
-                  <h4 style={{ margin: '0' }}>
-                    Current Block Number:{' '}
+                  <h4 style={{ margin: "0" }}>
+                    Current Block Number:{" "}
                     {this.props.start_block +
                       this.state.current_block_increment}
                   </h4>
-                  <h5 style={{ marginTop: '5px', marginBottom: '5px' }}>
+                  <h5 style={{ marginTop: "5px", marginBottom: "5px" }}>
                     Next Witness Rotation: {this.props.next_block}
                   </h5>
                   {CurrentRoundCards(
@@ -122,19 +122,19 @@ export default class CurrentRoundSchedule extends React.PureComponent<
               return (
                 <div
                   style={{
-                    width: '49%',
-                    display: 'inline-block',
-                    top: '10px',
-                    position: 'fixed',
-                    textAlign: 'center'
+                    width: "49%",
+                    display: "inline-block",
+                    top: "10px",
+                    position: "fixed",
+                    textAlign: "center"
                   }}
                 >
-                  <h4 style={{ margin: '0' }}>
-                    Current Block Number:{' '}
+                  <h4 style={{ margin: "0" }}>
+                    Current Block Number:{" "}
                     {this.props.start_block +
                       this.state.current_block_increment}
                   </h4>
-                  <h5 style={{ marginTop: '5px', marginBottom: '5px' }}>
+                  <h5 style={{ marginTop: "5px", marginBottom: "5px" }}>
                     Next Witness Rotation: {this.props.next_block}
                   </h5>
                   {CurrentRoundCards(

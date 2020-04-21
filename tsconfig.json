@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
@@ -21,8 +17,5 @@
     "outDir": "./Server",
     "noEmit": true
   },
-  "include": [
-    "./src/Components",
-    "./src/Redux"
-  ]
+  "include": ["src"]
 }
