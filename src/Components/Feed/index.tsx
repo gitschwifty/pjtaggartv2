@@ -9,10 +9,10 @@ export default class extends React.Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Post Feed</title>
+          <title>Blog</title>
         </Helmet>
         <Page>
-          <HeaderContainer title='Posts' />
+          <HeaderContainer title='Posts (Under Reconstruction Due to STEEM&lquot;s Governance Issues)' />
           <BodyContainer>
             <Feed />
           </BodyContainer>
