@@ -1,11 +1,8 @@
 import React from 'react';
 import { Discussion } from 'dsteem';
-import { connect } from 'react-redux';
-
+import { connect, ConnectedComponentClass } from 'react-redux';
 import { AppState } from '../../Redux/Reducers';
-
 import PostPreview from './PostPreview';
-
 import './Feed.css';
 import LoadingIcon from '../LoadingIcon';
 
@@ -32,4 +29,4 @@ class Feed extends React.Component<FeedProps> {
 export default connect(
   mapStateToProps,
   null
-)(Feed);
+)(Feed) as unknown as ConnectedComponentClass<typeof Feed, Pick<FeedProps, never>>;

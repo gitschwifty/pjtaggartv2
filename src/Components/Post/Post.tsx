@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Discussion } from 'dsteem';
-import { connect } from 'react-redux';
+import { connect, ConnectedComponentClass } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import { AppState } from '../../Redux/Reducers';
 import { HeaderContainer, BodyContainer } from '../Container';
@@ -102,4 +102,4 @@ class Post extends React.Component<PostProps, PostState> {
 export default connect(
   mapStateToProps,
   null
-)(Post);
+)(Post) as unknown as ConnectedComponentClass<typeof Post, Pick<PostProps, "match" | "location" | "history" | "staticContext">>;

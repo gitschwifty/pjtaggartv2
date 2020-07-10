@@ -5,7 +5,7 @@ import PortfolioCollapseList from './PortfolioCollapseList';
 import { AppState } from '../../Redux/Reducers';
 import LoadingIcon from '../LoadingIcon';
 import ModalCodeDisplay from './ModalDisplay';
-import { connect } from 'react-redux';
+import { connect, ConnectedComponentClass } from 'react-redux';
 
 export interface GitFileInterface {
   sha: string;
@@ -119,4 +119,4 @@ class Portfolio extends React.Component<PortfolioProps, PortfolioState> {
 export default connect(
   mapStateToProps,
   null
-)(Portfolio);
+)(Portfolio) as unknown as ConnectedComponentClass<typeof Portfolio, Pick<PortfolioProps, never>>;
